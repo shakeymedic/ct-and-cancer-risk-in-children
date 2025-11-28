@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMEBEM Summary: Medical Imaging & Paediatric Malignancy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --wmebem-blue: #1e3a8a;
+            --wmebem-light: #3b82f6;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+        .card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--wmebem-light);
+        }
+        
+        /* Hero Pattern */
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, #1e40af 0%, #1e3a8a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-grid {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(500px) rotateX(60deg);
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
+        }
+        
+        /* Animated Scanner Ring */
+        .scanner-ring {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 3s ease-in-out infinite alternate;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        /* Graph Tooltip */
+        .graph-point:hover + .graph-tooltip {
+            opacity: 1;
+            transform: translateY(-10px);
+        }
+
+        .question-card {
+            border-left: 4px solid #1e3a8a;
+            background-color: #f8fafc;
+        }
+
+        .responsive-iframe-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <div class="hero-bg text-white pb-12 pt-16 px-4 relative">
+        <div class="hero-grid"></div>
+        <!-- Abstract Scanner Circles Background -->
+        <svg class="absolute top-0 right-0 opacity-10 pointer-events-none" width="600" height="600" viewBox="0 0 600 600">
+            <circle cx="450" cy="150" r="100" stroke="white" stroke-width="2" fill="none" />
+            <circle cx="450" cy="150" r="150" stroke="white" stroke-width="1" fill="none" stroke-dasharray="10 5" />
+            <circle cx="450" cy="150" r="200" stroke="white" stroke-width="4" fill="none" class="scanner-ring"/>
+            <circle cx="450" cy="150" r="300" stroke="white" stroke-width="1" fill="none" opacity="0.5"/>
+        </svg>
+
+        <div class="container mx-auto max-w-6xl relative z-10 text-center">
+            <img src="https://iili.io/KGQOvkl.md.png" alt="WMEBEM Logo" class="mx-auto h-24 mb-6 drop-shadow-lg hover:scale-105 transition-transform">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm mb-4">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                <span class="text-xs font-bold tracking-wider uppercase text-blue-100">Evidence Update 2025</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200">
+                Medical Imaging & <br/> Paediatric Malignancy
+            </h1>
+            <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto font-light">
+                A critical appraisal of the NEJM 2025 retrospective cohort study involving 3.7 million children.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto max-w-6xl px-4 -mt-10 pb-12 relative z-20">
+        
+        <!-- PICO Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="card p-6 border-t-4 border-t-blue-600">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="p-2 bg-blue-50 rounded-lg text-blue-600"><i class="ph-bold ph-users text-xl"></i></div>
+                    <h3 class="font-bold text-slate-800">Population</h3>
+                </div>
+                <p class="text-sm text-slate-600"><strong>3.7 Million Children</strong><br>Born 1996–2016<br>USA & Canada</p>
+            </div>
+            <div class="card p-6 border-t-4 border-t-blue-600">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="p-2 bg-blue-50 rounded-lg text-blue-600"><i class="ph-bold ph-radioactive text-xl"></i></div>
+                    <h3 class="font-bold text-slate-800">Intervention</h3>
+                </div>
+                <p class="text-sm text-slate-600">Cumulative bone marrow dose from <strong>CT, X-ray, Fluoroscopy & Nuclear Med</strong>.</p>
+            </div>
+            <div class="card p-6 border-t-4 border-t-blue-600">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="p-2 bg-blue-50 rounded-lg text-blue-600"><i class="ph-bold ph-scales text-xl"></i></div>
+                    <h3 class="font-bold text-slate-800">Comparator</h3>
+                </div>
+                <p class="text-sm text-slate-600">Comparison against children with <strong>0 mGy</strong> exposure (No imaging).</p>
+            </div>
+            <div class="card p-6 border-t-4 border-t-blue-600">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="p-2 bg-blue-50 rounded-lg text-blue-600"><i class="ph-bold ph-trend-up text-xl"></i></div>
+                    <h3 class="font-bold text-slate-800">Outcome</h3>
+                </div>
+                <p class="text-sm text-slate-600">Incident <strong>Haematologic Malignancy</strong> (Leukaemia, Lymphoma, etc.).</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Primary Outcome: Visual Graph -->
+            <div class="card lg:col-span-8 p-0 overflow-hidden flex flex-col">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <i class="ph-fill ph-chart-line-up text-blue-600"></i>
+                            The Dose-Response Relationship
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">Relative Risk (RR) vs Cumulative Dose (mGy)</p>
+                    </div>
+                </div>
+                
+                <div class="relative h-64 w-full bg-white p-6 flex items-end justify-center">
+                    <!-- SVG Graph -->
+                    <svg viewBox="0 0 800 300" class="w-full h-full overflow-visible">
+                        <!-- Grid Lines -->
+                        <line x1="50" y1="250" x2="750" y2="250" stroke="#e2e8f0" stroke-width="2" />
+                        <line x1="50" y1="50" x2="750" y2="50" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4" />
+                        <text x="20" y="255" class="text-xs fill-slate-400 font-sans">0</text>
+                        <text x="20" y="55" class="text-xs fill-slate-400 font-sans">RR 4</text>
+
+                        <!-- The Line -->
+                        <polyline points="50,250 150,230 300,210 500,200 700,100" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M50,250 L150,230 L300,210 L500,200 L700,100 L700,300 L50,300 Z" fill="url(#blueGradient)" opacity="0.2"/>
+                        
+                        <!-- Definitions -->
+                        <defs>
+                            <linearGradient id="blueGradient" x1="0" x2="0" y1="0" y2="1">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Data Points -->
+                        <!-- 0 mGy -->
+                        <circle cx="50" cy="250" r="6" fill="#1e3a8a" />
+                        
+                        <!-- <5 mGy -->
+                        <g class="group cursor-pointer">
+                            <circle cx="150" cy="230" r="6" fill="#3b82f6" class="graph-point"/>
+                            <foreignObject x="100" y="150" width="100" height="70" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="bg-slate-800 text-white text-xs p-2 rounded shadow-lg text-center">
+                                    <strong>&lt;5 mGy</strong><br>RR 1.41
+                                </div>
+                            </foreignObject>
+                        </g>
+
+                        <!-- 15-20 mGy -->
+                        <g class="group cursor-pointer">
+                            <circle cx="300" cy="210" r="6" fill="#3b82f6" class="graph-point"/>
+                            <foreignObject x="250" y="130" width="100" height="70" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="bg-slate-800 text-white text-xs p-2 rounded shadow-lg text-center">
+                                    <strong>15-20 mGy</strong><br>RR 1.82
+                                </div>
+                            </foreignObject>
+                        </g>
+
+                         <!-- 30-50 mGy -->
+                         <g class="group cursor-pointer">
+                            <circle cx="500" cy="200" r="6" fill="#f59e0b" class="graph-point"/> <!-- Warning color -->
+                            <foreignObject x="450" y="120" width="100" height="70" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="bg-slate-800 text-white text-xs p-2 rounded shadow-lg text-center">
+                                    <strong>30-50 mGy</strong><br>RR 1.97
+                                </div>
+                            </foreignObject>
+                        </g>
+
+                        <!-- >50 mGy -->
+                        <g class="group cursor-pointer">
+                            <circle cx="700" cy="100" r="8" fill="#ef4444" class="animate-pulse graph-point"/> <!-- Danger color -->
+                            <foreignObject x="650" y="20" width="100" height="70" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="bg-red-600 text-white text-xs p-2 rounded shadow-lg text-center">
+                                    <strong>50-100 mGy</strong><br>RR 3.59
+                                </div>
+                            </foreignObject>
+                        </g>
+                    </svg>
+                </div>
+                <div class="bg-slate-50 p-4 text-xs text-slate-500 text-center border-t border-slate-100">
+                    Hover over the data points to see the Relative Risk (RR) values. Note the sharp increase at >50 mGy.
+                </div>
+            </div>
+
+            <!-- Context: The CT Scanner Visual -->
+            <div class="card lg:col-span-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white border-none relative overflow-hidden">
+                <!-- Decorative SVG Background -->
+                <svg class="absolute bottom-0 right-0 opacity-10" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <line x1="12" y1="2" x2="12" y2="22" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                </svg>
+
+                <div class="p-6 relative z-10">
+                    <h2 class="text-xl font-bold mb-4 text-blue-300 flex items-center gap-2">
+                        <i class="ph-bold ph-warning-circle"></i> Clinical Context
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm border border-white/10">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-300">1x Head CT Dose</span>
+                                <span class="text-lg font-bold text-white">~13.3 mGy</span>
+                            </div>
+                            <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                                <div class="bg-blue-500 h-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm border border-white/10">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-300">Risk Threshold</span>
+                                <span class="text-lg font-bold text-orange-400">~2 Scans</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">
+                                Just two head CTs (~26 mGy) places a child in the <strong>RR 1.8</strong> risk category.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10">
+                        <p class="text-3xl font-extrabold text-white">10.1%</p>
+                        <p class="text-sm text-slate-400">of malignancies in the exposed group were potentially attributable to imaging.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Absolute Risk Visualization -->
+            <div class="card lg:col-span-12 p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Perspective: Absolute Risk</h2>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            It is vital to communicate risk accurately. While the relative risk doubles, the <strong>absolute risk remains very low</strong>.
+                        </p>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 mb-2">
+                             <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-slate-700">No Exposure</span>
+                                <span class="text-sm font-mono text-slate-500">14.3 / 10,000</span>
+                             </div>
+                        </div>
+                         <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                             <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-blue-800">30 mGy Exposure</span>
+                                <span class="text-sm font-mono text-blue-700">39.9 / 10,000</span>
+                             </div>
+                             <p class="text-xs text-blue-600 mt-1">~25 Excess cases per 10,000 children</p>
+                        </div>
+                    </div>
+
+                    <!-- Clean Bar Chart Visualization -->
+                    <div class="p-6">
+                        <p class="text-xs text-center text-slate-400 mb-4 uppercase tracking-wider">Cumulative Incidence per 10,000 Children</p>
+                        
+                        <!-- Bar 1 -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-semibold text-slate-600">Baseline Risk (0 mGy)</span>
+                                <span class="text-slate-500">14.3</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-8 overflow-hidden relative">
+                                <div class="bg-slate-400 h-full rounded-full flex items-center px-3 text-white text-xs font-bold" style="width: 35%">
+                                    14
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bar 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-semibold text-blue-700">Elevated Risk (30 mGy)</span>
+                                <span class="text-blue-600">39.9</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-8 overflow-hidden relative flex">
+                                <!-- Baseline portion -->
+                                <div class="bg-slate-400 h-full flex items-center justify-center text-white text-xs border-r border-slate-300" style="width: 35%">
+                                </div>
+                                <!-- Excess portion -->
+                                <div class="bg-red-500 h-full flex items-center px-3 text-white text-xs font-bold whitespace-nowrap" style="width: 65%">
+                                    +25 Excess
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-4 text-center">The red portion represents the added risk from radiation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinical Bottom Line -->
+            <div class="card lg:col-span-12 overflow-hidden mt-2">
+                <div class="bg-blue-600 p-8 text-center text-white relative">
+                    <!-- Decorative Icon -->
+                    <i class="ph-duotone ph-stethoscope absolute top-1/2 left-10 -translate-y-1/2 text-9xl text-blue-500 opacity-30 hidden md:block"></i>
+                    
+                    <h2 class="text-3xl font-bold mb-4 relative z-10">Clinical Bottom Line</h2>
+                    <p class="text-xl max-w-3xl mx-auto leading-relaxed opacity-90 relative z-10">
+                        "Justify every scan. If Ultrasound or MRI can answer the question, use them. However, <span class="font-bold text-yellow-300">never withhold a clinically indicated CT scan</span> based on this risk alone—the immediate risk of a missed diagnosis usually outweighs the long-term cancer risk."
+                    </p>
+                    <div class="mt-8 flex justify-center gap-4 relative z-10">
+                         <div class="px-4 py-2 bg-blue-700 rounded-lg text-sm font-semibold border border-blue-500">
+                            Author: Dr Jake Turner
+                         </div>
+                         <div class="px-4 py-2 bg-blue-700 rounded-lg text-sm font-semibold border border-blue-500">
+                            Source: NEJM 2025
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OSCE Questions Section (Moved After Bottom Line) -->
+             <div class="lg:col-span-12 mt-8">
+                 <h2 class="text-3xl font-extrabold text-slate-900 mb-6 text-center">Potential FRCEM OSCE Questions</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Question 1 -->
+                    <div class="card p-6 question-card">
+                        <div class="flex items-start gap-3 mb-4">
+                            <i class="ph-bold ph-question text-2xl text-blue-600 mt-1"></i>
+                            <p class="font-bold text-lg text-slate-800">"What is the main limitation of this study being retrospective?"</p>
+                        </div>
+                        <div class="text-slate-600 text-sm bg-white p-3 rounded border border-slate-200">
+                            <p class="mb-2"><strong class="text-blue-700">Key Answer:</strong> Reverse Causation / Indication Bias.</p>
+                            <p>Children who get scans are inherently sicker than those who don't. While the authors adjusted for Down's syndrome and used a lag period (ignoring cancers diagnosed within 6-24 months of a scan), it is impossible to completely rule out that the scan was performed to investigate symptoms of an as-yet-undiagnosed cancer.</p>
+                        </div>
+                    </div>
+
+                     <!-- Question 2 -->
+                    <div class="card p-6 question-card">
+                        <div class="flex items-start gap-3 mb-4">
+                            <i class="ph-bold ph-chats-circle text-2xl text-blue-600 mt-1"></i>
+                            <p class="font-bold text-lg text-slate-800">"A parent is refusing a Head CT for their child with a GCS of 13 post-trauma due to cancer risk. How do you counsel them?"</p>
+                        </div>
+                        <div class="text-slate-600 text-sm bg-white p-3 rounded border border-slate-200">
+                            <p class="mb-2"><strong class="text-blue-700">Key Answer:</strong> Acknowledge, Validate, then Balance.</p>
+                            <p>1. <strong>Validate:</strong> "It is excellent that you are thinking about long-term safety."<br>
+                            2. <strong>Quantify Risk:</strong> "The risk is real but very small. For every 10,000 scans, we might see ~25 extra cases over 20 years."<br>
+                            3. <strong>Immediate Benefit:</strong> "However, the risk of missing a bleed in the brain right now is much higher and could be fatal tonight."</p>
+                        </div>
+                    </div>
+
+                     <!-- Question 3 -->
+                    <div class="card p-6 question-card">
+                        <div class="flex items-start gap-3 mb-4">
+                            <i class="ph-bold ph-gavel text-2xl text-blue-600 mt-1"></i>
+                            <p class="font-bold text-lg text-slate-800">"Does this paper mean we should stop using CTs in children?"</p>
+                        </div>
+                        <div class="text-slate-600 text-sm bg-white p-3 rounded border border-slate-200">
+                            <p class="mb-2"><strong class="text-blue-700">Key Answer:</strong> No.</p>
+                            <p>It means we should apply <strong>ALARA</strong> (As Low As Reasonably Achievable) principles strictly. We should not use CT if an MRI or Ultrasound can answer the question (e.g., abdominal pain). But for time-critical, life-threatening queries (polytrauma, intracranial haemorrhage), CT remains the gold standard and its benefits outweigh the risks.</p>
+                        </div>
+                    </div>
+
+                 </div>
+            </div>
+
+            <!-- Video Player Card -->
+            <div class="card p-6 lg:col-span-6 mt-6">
+                <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center">
+                    <i class="ph-bold ph-video mr-3 text-blue-600"></i>
+                    Video Summary
+                </h2>
+                <div class="responsive-iframe-container rounded-lg shadow-inner overflow-hidden">
+                    <iframe src="https://www.youtube.com/embed/mT8ZMrchLRs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <!-- Podcast Player Card -->
+            <div class="card p-6 lg:col-span-6 mt-6">
+                <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center">
+                    <i class="ph-bold ph-microphone mr-3 text-blue-600"></i>
+                    Podcast
+                </h2>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4Eqd05PLLdLHkdqD36zCUW?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-slate-400 text-sm pb-8">
+            <p class="mb-2">Designed by Dr Jake Turner for West Midlands Evidence Based Medicine Group Ltd.</p>
+            <p class="text-xs max-w-2xl mx-auto">
+                This infographic is for educational purposes. <br>
+                <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="underline hover:text-blue-500">CC BY-NC-SA 4.0</a>
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
